@@ -35,7 +35,6 @@ body{
     font-size: 40px;
     font-weight: bold;
     font-family:'Palatino Linotype';
-    padding-top: 100px;
 }
 .articleSubtitle{
     font-weight: lighter;
@@ -58,12 +57,10 @@ body{
     max-width: 500px;
     margin: 0 auto;
     padding: 0px 20px;
-    text-align: center;
 }
 .paragraph{
     font-size: 18px;
     line-height: 1.6;
-    text-align: justify;
 }
 .hugeLetter {
     font-size: 60px;
@@ -74,7 +71,7 @@ body{
     line-height: 0.8;
   }
 .image1{
-    max-width: 500px;
+    max-width: 150%;
 }
 .image2{
     max-width: 500px;
