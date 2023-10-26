@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>360-Degree Photo Viewer</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <style>
+      .button-link {
+        /* display: inline-block;
+        padding: 10px 20px;
+        background-color: #0074d9;
+        color: #fff;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px; */
+        cursor: pointer; 
+      }
+    </style>
+  </head>
+  <body>
+    <h1>360-Degree Photo Viewer</h1>
+    
+    <!-- Form to input the link -->
+    <form id="photoForm">
+      <label for="photoLink">Enter 360-Degree Photo Link:</label>
+      <input type="text" id="photoLink" name="photoLink">
+      <br>
+      <a href="https://postimages.org/" target="_blank" class="button-link"><button type="button" >Image from Laptop</button></a>
+      <br><br><br>
+      <button type="submit">Submit</button>
+      <button type="button" id="resetButton">Reset</button>
+    </form>
+
+    <!-- A-Frame scene will be created here -->
+    <div id="aframeContainer"></div>
+
+    <script>
+      // Function to create the A-Frame scene
+      function createAFrameScene(link) {
+        const aframeContainer = document.getElementById('aframeContainer');
+        const scene = document.createElement('a-scene');
+        const sky = document.createElement('a-sky');
+        
+        sky.setAttribute('src', link);
+        sky.setAttribute('rotation', '0 -90 0');
+        
+        scene.appendChild(sky);
+        aframeContainer.innerHTML = '';
+        aframeContainer.appendChild(scene);
+      }
+
+      // Handle form submission
+      document.getElementById('photoForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const photoLink = document.getElementById('photoLink').value;
+        
+        // Check if a link is provided
+        if (photoLink) {
+          createAFrameScene(photoLink);
+        }
+      });
+
+      // Handle reset button click
+      document.getElementById('resetButton').addEventListener('click', function () {
+        document.getElementById('photoLink').value = '';
+        createAFrameScene(''); // Reset the A-Frame scene
+      });
+
+      // Function to open the popup with instructions
+      function openInstructionsPopup() {
+        const popupMessage = "Step 1: Click OK\n" +
+          "Step 2: Upload Picture and copy the 'Direct Link'\n" +
+          "Step 3: Paste it in 'Enter 360-Degree Photo Link':";
+        alert(popupMessage);
+      }
+
+      // Attach the function to the "Upload Image from Laptop" button
+      document.querySelector('.button-link').addEventListener('click', openInstructionsPopup);
+    </script>
+  </body>
+</html>
