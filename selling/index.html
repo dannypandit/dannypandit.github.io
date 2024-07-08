@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Grid Layout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+        .title {
+            text-align: center;
+            margin: 20px 0;
+            color: hotpink;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 80%;
+        }
+        .grid-item {
+            border: 1px solid #929292;
+            padding: 10px;
+            text-align: center;
+            background-color: #e5e4e4;
+        }
+        .grid-item img {
+            width: 350px;
+            height: 400px;
+        }
+        .grid-item button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+        .grid-item button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function sendMessage(number, message) {
+            var url = `https://api.whatsapp.com/send?phone=${number}&text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</head>
+<body>
+
+    <h1 class="title">Selling These Things!!!</h1>
+
+    <div class="grid-container">
+        <div class="grid-item">
+            <h2>Chair</h2>
+            <img src="./images/chair.jpg" alt="Chair Image" >
+            <button onclick="sendMessage('+13159529141', 'Hello, this is a message for The listed chair')">Intrested to buy 25$ Chair</button>
+        </div>
+        <div class="grid-item">
+            <h2>Cycle</h2>
+            <img src="./images/cycle.jpg" alt="cycle Image" >
+            <button onclick="sendMessage('+13159529141', 'Hello, this is a message for The listed cycle')">Intrested to buy 100$ Cycle</button>
+        </div>
+        <div class="grid-item">
+            <h2>Artificial Grass</h2>
+            <img src="./images/grass artificial.jpg" alt="Grass Image" >
+            <button onclick="sendMessage('+13159529141', 'Hello, this is a message for The listed chair')">Intrested to buy 30$ Artifical Grass</button>
+        </div><div class="grid-item">
+            <h2>Airfryer</h2>
+            <img src="./images/airfryer.jpg" alt="Airfryer Image" >
+            <button onclick="sendMessage('+13159529141', 'Hello, this is a message for The listed chair')">Intrested to buy 10$ Airfyer</button>
+        </div>
+    </div>
+
+</body>
+</html>
