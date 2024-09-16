@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>360-Degree Photo Viewer</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <h1>360-Degree Photo Viewer</h1>
+    
+    <!-- Form to input the link and/or upload an image -->
+    <form id="photoForm">
+      <label for="photoLink">Enter 360-Degree Photo Link:</label>
+      <input type="text" id="photoLink" name="photoLink">
+      <br>
+      <label for="photoUpload">Upload a 360-Degree Photo:</label>
+      <input type="file" id="photoUpload" accept="image/*">
+      <br>
+      <button type="submit">Submit</button>
+      <button type="button" id="resetButton">Reset</button>
+    </form>
+    
+    <!-- A-Frame scene will be created here -->
+    <div id="aframeContainer"></div>
+
+    <script>
+      // Function to create the A-Frame scene
+      function createAFrameScene(link) {
+        const aframeContainer = document.getElementById('aframeContainer');
+        const scene = document.createElement('a-scene');
+        const sky = document.createElement('a-sky');
+        
+        sky.setAttribute('src', link);
+        sky.setAttribute('rotation', '0 -90 0');
+        
+        scene.appendChild(sky);
+        aframeContainer.innerHTML = '';
+        aframeContainer.appendChild(scene);
+      }
+
+      // Handle form submission
+      document.getElementById('photoForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const photoLink = document.getElementById('photoLink').value;
+        const photoUpload = document.getElementById('photoUpload').files[0];
+        
+        // Check if either a link or an uploaded file is provided
+        if (photoLink || photoUpload) {
+          // Use the link if provided, otherwise use the uploaded file
+          const source = photoLink ? photoLink : (photoUpload ? URL.createObjectURL(photoUpload) : '');
+          createAFrameScene(source);
+        }
+      });
+
+      // Handle reset button click
+      document.getElementById('resetButton').addEventListener('click', function () {
+        document.getElementById('photoLink').value = '';
+        document.getElementById('photoUpload').value = '';
+        createAFrameScene(''); // Reset the A-Frame scene
+      });
+    </script>
+  </body>
+</html>
